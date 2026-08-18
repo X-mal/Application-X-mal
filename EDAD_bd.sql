@@ -10,8 +10,9 @@ USE EDAD;
 /**
 * Tabela de Usuario Aluno faculdade
 * Autor:
-* - Caio
+* - Caio / juarez
 * Ultima atualização:
+<<<<<<< HEAD
 */
 CREATE TABLE userFac(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
@@ -24,6 +25,18 @@ CREATE TABLE userFac(
 
 /**
 * Tabela de Usuario Aluno Tecnico
+=======
+CREATE TABLE users (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    username VARCHAR(250) NOT NULL ,
+    email VARCHAR(250) NOT NULL,
+    pass VARCHAR(250) NOT NULL,
+    status ENUM('Cursando', 'Trancado') NOT NULL DEFAULT 'Cursando'
+); 
+
+/** 
+* Tabela de Usuario Aluno Escola
+>>>>>>> a2d93bb2fdcc8df55366be99e3bc651e9f770a2f
 * Autor:
 * - Jorge
 * Ultima atualização:
