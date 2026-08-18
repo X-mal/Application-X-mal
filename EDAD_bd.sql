@@ -13,22 +13,28 @@ USE EDAD;
 * - Caio
 * Ultima atualização:
 */
-
+CREATE TABLE userFac(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    RA VARCHAR(255) NOT NULL UNIQUE,
+    PASS VARCHAR(250) NOT NULL,
+    curso VARCHAR(255) NOT NULL,
+    turno ENUM('matutino', 'noturno') NOT NULL,
+    situacao ENUM('cursando', 'trancado') NOT NULL DEFAULT 'cursando'
+);
 
 /**
-* Tabela de Usuario Aluno Escola
+* Tabela de Usuario Aluno Tecnico
 * Autor:
 * - Jorge
 * Ultima atualização:
 */
-CREATE TABLE userE(
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(250) NOT NULL,
-    email VARCHAR(250) NOT NULL,
+CREATE TABLE userTec(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    RA VARCHAR(255) NOT NULL UNIQUE,
     PASS VARCHAR(250) NOT NULL,
-    Curso VARCHAR(255) NOT NULL,
-    Turno int NOT NULL
-    estado VARCHAR(255) NOT NULL
+    curso VARCHAR(255) NOT NULL,
+    turno ENUM('matutino', 'noturno') NOT NULL,
+    situacao ENUM('cursando', 'trancado') NOT NULL DEFAULT 'cursando'
 );
 
 /**
@@ -37,7 +43,13 @@ CREATE TABLE userE(
 * - Adson
 * Ultima atualização:
 */
-
+CREATE TABLE userADM(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    username VARCHAR(250) NOT NULL,
+    email VARCHAR(250) NOT NULL,
+    PASS VARCHAR(250) NOT NULL,
+    setor ENUM('faculdade', 'tecnico')
+);
 /**
 * Tabela de arquivos
 * Autor:
@@ -45,20 +57,36 @@ CREATE TABLE userE(
 * Ultima atualização: 14/08/2026
 -- */
 CREATE TABLE arquivos(
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    Username VARCHAR(255) NOT NULL,
-    Readname VARCHAR(255) not NULL,
-    email VARCHAR(255) NOT NULL,
-    PASS VARCHAR(255) NOT NULL,
-    estado VARCHAR(255) NOT NULL,
-    resposta VARCHAR(255) NOT NULL
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    descricao VARCHAR(255) NOT NULL,
+    estado ENUM('recebido','negado','aprovado') NOT NULL DEFAULT 'recebido',
+    idtec INT NOT NULL,
+    idfac INT NOT NULL,
+    CONSTRAINT fk_userTec,
+    FOREIGN KEY (idtec),
+    REFERENCES userTec(id),
+    CONSTRAINT fk_userFac,
+    FOREIGN KEY (idfac),
+    REFERENCES userFac(id)
 );
 
+CREATE TABLE resp(
+    id int NOT Null UNIQUE PRIMARY Key AUTO_INCREMENT,
+    respota text not null,
+    arquivo int NOT NULL,
+    adm int NOT NULL,
+    CONSTRAINT fk_arquivos_resp,
+    FOREIGN KEY (arquivo),
+    REFERENCES arquivos(id),
+    CONSTRAINT fk_adm_resp,
+    FOREIGN KEY (adm),
+    REFERENCES userADM(id)
+);
 
-INSERT INTO user(username,email,PASS) VALUES ("Jorgejbf","jorgejbf@gmail.com",MD5("123"));
-INSERT INTO arquivos(Username) VALUES (1);
+INSERT INTO usertec(RA,PASS,curso,turno) VALUES ("Jorgejbf",MD5("123"),"informatica","noturno");
+INSERT INTO arquivos(descricao,idtec,idfac) VALUES ('Em analise','1','1');
 
-SELECT u.username , a.id from usere u LEFT JOIN points p ON u.id = a.username;
+SELECT ut.RA , a.id from usertec ut LEFT JOIN arquivos a ON ut.id = a.idtec;
 
 
 -- Base de Exemplo
@@ -160,7 +188,7 @@ Ultima atualização: 13-08-2026/19:47
 CREATE DATABASE EDAD;
 USE EDAD;
 
-CREATE TABLE userE(
+CREATE TABLE userTec(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(250) NOT NULL,
     email VARCHAR(250) NOT NULL,
