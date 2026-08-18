@@ -10,12 +10,17 @@ USE EDAD;
 /**
 * Tabela de Usuario Aluno faculdade
 * Autor:
-* - Caio
+* - Caio / juarez
 * Ultima atualização:
-*/
+CREATE TABLE users (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    username VARCHAR(250) NOT NULL ,
+    email VARCHAR(250) NOT NULL,
+    pass VARCHAR(250) NOT NULL,
+    status ENUM('Cursando', 'Trancado') NOT NULL DEFAULT 'Cursando'
+); 
 
-
-/**
+/** 
 * Tabela de Usuario Aluno Escola
 * Autor:
 * - Jorge
