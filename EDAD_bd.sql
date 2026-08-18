@@ -10,9 +10,8 @@ USE EDAD;
 /**
 * Tabela de Usuario Aluno faculdade
 * Autor:
-* - Caio / juarez
+* - Caio
 * Ultima atualização:
-<<<<<<< HEAD
 */
 CREATE TABLE userFac(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
@@ -25,18 +24,6 @@ CREATE TABLE userFac(
 
 /**
 * Tabela de Usuario Aluno Tecnico
-=======
-CREATE TABLE users (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
-    username VARCHAR(250) NOT NULL ,
-    email VARCHAR(250) NOT NULL,
-    pass VARCHAR(250) NOT NULL,
-    status ENUM('Cursando', 'Trancado') NOT NULL DEFAULT 'Cursando'
-); 
-
-/** 
-* Tabela de Usuario Aluno Escola
->>>>>>> a2d93bb2fdcc8df55366be99e3bc651e9f770a2f
 * Autor:
 * - Jorge
 * Ultima atualização:
@@ -75,11 +62,11 @@ CREATE TABLE arquivos(
     estado ENUM('recebido','negado','aprovado') NOT NULL DEFAULT 'recebido',
     idtec INT NOT NULL,
     idfac INT NOT NULL,
-    CONSTRAINT fk_userTec,
-    FOREIGN KEY (idtec),
+    CONSTRAINT fk_userTec
+    FOREIGN KEY (idtec)
     REFERENCES userTec(id),
-    CONSTRAINT fk_userFac,
-    FOREIGN KEY (idfac),
+    CONSTRAINT fk_userFac
+    FOREIGN KEY (idfac)
     REFERENCES userFac(id)
 );
 
@@ -88,11 +75,11 @@ CREATE TABLE resp(
     respota text not null,
     arquivo int NOT NULL,
     adm int NOT NULL,
-    CONSTRAINT fk_arquivos_resp,
-    FOREIGN KEY (arquivo),
+    CONSTRAINT fk_arquivos_resp
+    FOREIGN KEY (arquivo)
     REFERENCES arquivos(id),
-    CONSTRAINT fk_adm_resp,
-    FOREIGN KEY (adm),
+    CONSTRAINT fk_adm_resp
+    FOREIGN KEY (adm)
     REFERENCES userADM(id)
 );
 
