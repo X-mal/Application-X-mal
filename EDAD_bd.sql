@@ -75,7 +75,7 @@ CREATE TABLE arquivos(
 
 CREATE TABLE resp(
     id int NOT Null UNIQUE PRIMARY Key AUTO_INCREMENT,
-    respota text not null,
+    resposta text not null,
     arquivo int NOT NULL,
     adm int NOT NULL,
     CONSTRAINT fk_arquivos_resp
@@ -127,6 +127,33 @@ INSERT INTO usertec(RA,PASS,curso,turno) VALUES ("Jorgejbf",MD5("123"),"informat
 INSERT INTO arquivos(descricao,idtec,idfac) VALUES ('Em analise','1','1');
 
     INSERT INTO userTec(RA,PASS,curso,turno,situacao) VALUES (t_RA,t_PASS,t_curso,t_turno,t_situacao);
+
+/**
+* Tabela de arquivos
+* Autor:
+* - Adson
+* Ultima atualização: 27/08/2026 - 
+-- */
+
+DELIMETER $$
+    CREATE PROCEDURE resposta_arquivo(
+        IN p_idarquivo INT,
+        IN p_resposta TEXT,
+        IN p_adm INT,
+        IN p_estado VARCHAR(20)
+)
+BEGIN
+
+    UPDATE arquivos
+    SET
+        resposta = p_resposta,
+        adm = p_adm,
+        estado = p_estado
+    WHERE id = p_idarquivo;
+
+    SELECT 'Resposta enviada com sucesso' AS mensagem;
+
+END $$
 
 -- Base de Exemplo
 -- CREATE TABLE users(
