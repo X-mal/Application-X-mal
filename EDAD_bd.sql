@@ -62,8 +62,8 @@ CREATE TABLE arquivos(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
     descricao VARCHAR(255) NOT NULL,
     estado ENUM('recebido','negado','aprovado') NOT NULL DEFAULT 'recebido',
-    idtec INT NOT NULL,
-    idfac INT NOT NULL,
+    idtec INT,
+    idfac INT,
     arquivo VARCHAR(255) unique,
     CONSTRAINT fk_userTec
     FOREIGN KEY (idtec)
@@ -88,10 +88,9 @@ CREATE TABLE resp(
 
 CREATE TABLE audit(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    tabela VARCHAR(250) NOT NULL,
     operation_type ENUM('insert','update','delete') NOT NULL,
     old_data JSON,
-    new_data JSON NOT NULL,
+    new_data JSON
     issuer_id INT NOT NULL,
     operation_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_users_audit
@@ -99,8 +98,6 @@ CREATE TABLE audit(
     REFERENCES userTec(id)
 );
 
-INSERT INTO usertec(RA,PASS,curso,turno) VALUES ("Jorgejbf",MD5("123"),"informatica","noturno");
-INSERT INTO arquivos(descricao,idtec,idfac) VALUES ('Em analise','1','1');
 
 SELECT ut.RA , a.id from usertec ut LEFT JOIN arquivos a ON ut.id = a.idtec;
 
@@ -108,21 +105,28 @@ SELECT ut.RA , a.id from usertec ut LEFT JOIN arquivos a ON ut.id = a.idtec;
 
 DELIMITER $$
     CREATE PROCEDURE add_arquivos_audit(
-        IN a_descricao VARCHAR(255),
-        IN a_estado ENUM,
-        IN r_resposta text
+        IN p_descricao VARCHAR(255),
+        IN p_resposta text,
+        IN p_idtec INT,
+        IN p_idfac INT,
+        IN p_arquivo VARCHAR(255)
+
     )
 BEGIN
-     DECLARE id INT;
-    INSERT INTO userTec(RA,PASS,curso,turno,situacao) VALUES (t_RA,t_PASS,t_curso,t_turno,t_situacao);
     -- SET t_id = (SELECT id FROM userTec WHERE RA = t_RA);
     SET t_RA = LAST_INSERT_ID();
-    INSERT INTO arquivos(idtec) VALUES (user_id,p_ammount);
+    INSERT INTO arquivos(descricao,idtec,idfac,arquivo) VALUES (p_descricao,p_idtec,p_idfac,p_arquivo);
+
+    SELECT "Mensagem enviada com sucesso";
 
 END $$
+CALL add_arquivos_audit("teste1base","resp",1,NULL,"arquivo teste PDF fake");
 
 
+INSERT INTO usertec(RA,PASS,curso,turno) VALUES ("Jorgejbf",MD5("123"),"informatica","noturno");
+INSERT INTO arquivos(descricao,idtec,idfac) VALUES ('Em analise','1','1');
 
+    INSERT INTO userTec(RA,PASS,curso,turno,situacao) VALUES (t_RA,t_PASS,t_curso,t_turno,t_situacao);
 
 -- Base de Exemplo
 -- CREATE TABLE users(
