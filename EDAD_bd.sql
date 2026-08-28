@@ -129,7 +129,7 @@ INSERT INTO arquivos(descricao,idtec,idfac) VALUES ('Em analise','1','1');
     INSERT INTO userTec(RA,PASS,curso,turno,situacao) VALUES (t_RA,t_PASS,t_curso,t_turno,t_situacao);
 
 /**
-* Tabela de arquivos
+* Tabela de resposta de arquivos
 * Autor:
 * - Adson
 * Ultima atualização: 27/08/2026 - 
