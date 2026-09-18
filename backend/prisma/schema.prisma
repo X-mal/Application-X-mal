@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model arquivos {
+  id        Int                 @id @default(autoincrement())
+  descricao String              @db.VarChar(255)
+  email     String              @db.VarChar(255)
+  pass      String              @db.VarChar(255)
+  estado    estado_arquivo_enum @default(recebido)
+  idtec     Int
+  idfac     Int
+  resposta  String              @db.VarChar(255)
+  userfac   userfac             @relation(fields: [idfac], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_userfac")
+  usertec   usertec             @relation(fields: [idtec], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_usertec")
+  resp      resp[]
+}
+
+model resp {
+  id       Int      @id @default(autoincrement())
+  resposta String
+  arquivo  Int
+  adm      Int
+  useradm  useradm  @relation(fields: [adm], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_adm_resp")
+  arquivos arquivos @relation(fields: [arquivo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_arquivos_resp")
+}
+
+model useradm {
+  id       Int         @id @default(autoincrement())
+  username String      @db.VarChar(250)
+  email    String      @db.VarChar(250)
+  pass     String      @db.VarChar(250)
+  setor    setor_enum?
+  resp     resp[]
+}
+
+model userfac {
+  id       Int           @id @default(autoincrement())
+  ra       String        @unique @db.VarChar(255)
+  username String        @db.VarChar(250)
+  email    String        @db.VarChar(250)
+  pass     String        @db.VarChar(250)
+  curso    String        @db.VarChar(255)
+  turno    turno_enum
+  situacao situacao_enum @default(cursando)
+  arquivos arquivos[]
+}
+
+model usertec {
+  id       Int           @id @default(autoincrement())
+  ra       String        @unique @db.VarChar(255)
+  username String        @db.VarChar(250)
+  email    String        @db.VarChar(250)
+  pass     String        @db.VarChar(250)
+  curso    String        @db.VarChar(255)
+  turno    turno_enum
+  situacao situacao_enum @default(cursando)
+  arquivos arquivos[]
+}
+
+enum estado_arquivo_enum {
+  recebido
+  negado
+  aprovado
+}
+
+enum setor_enum {
+  faculdade
+  tecnico
+}
+
+enum situacao_enum {
+  cursando
+  trancado
+}
+
+enum turno_enum {
+  matutino
+  noturno
+}
