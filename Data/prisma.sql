@@ -1,10 +1,4 @@
-generator client {
-  provider = "prisma-client-js"
-}
 
-datasource db {
-  provider = "postgresql"
-}
 
 model arquivos {
   id        Int                 @id @default(autoincrement())
@@ -30,14 +24,13 @@ model resp {
 }
 
 model useradm {
-  id       Int         @id @default(autoincrement())
-  username String      @db.VarChar(250)
-  email    String      @db.VarChar(250)
-  pass     String      @db.VarChar(250)
-  setor    setor_enum @default(tecnico)
+  id       Int             @id @default(autoincrement())
+  username String          @db.VarChar(250)
+  email    String          @db.VarChar(250)
+  pass     String          @db.VarChar(250)
+  setor    setor_enum      @default(tecnico)
   resp     resp[]
   estado   estado_adm_enum @default(ativo)
-
 }
 
 model userfac {
@@ -85,6 +78,7 @@ enum turno_enum {
   matutino
   noturno
 }
+
 enum estado_adm_enum {
   ativo
   inativo
