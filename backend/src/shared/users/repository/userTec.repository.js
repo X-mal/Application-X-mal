@@ -20,7 +20,7 @@ async function findByEmailTec(email) {
 }
 
 async function validateByUsernameTec(username) {
-    const user = prisma.userTec.findUnique({
+    const user = await prisma.userTec.findUnique({
         where: {
             username
         }
@@ -28,7 +28,7 @@ async function validateByUsernameTec(username) {
     return !! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
 }
 async function validateByUserEmailTec(email) {
-    const user = prisma.userTec.findUnique({
+    const user = await prisma.userTec.findUnique({
         where: {
             email
         }
@@ -52,7 +52,7 @@ async function listUsersTec() {
  * validar por usuario e senha
  */
 async function validateUserTec(username, password) {
-    const user = prisma.userTec.findFirst({
+    const user = await prisma.userTec.findFirst({
         where: {
             username,
             password

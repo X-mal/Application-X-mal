@@ -29,7 +29,7 @@ async function listUsersADM() {
  * validar por usuario e senha
  */
 async function validateUserADM(username, PASS) {
-    const user = prisma.userADM.findFirst({
+    const user = await prisma.userADM.findFirst({
         where: {
             username,
             PASS

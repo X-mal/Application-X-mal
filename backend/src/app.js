@@ -49,7 +49,7 @@ app.post("/signin", (req, res) => {         /* o post vai enviar o dado para o b
 app.post("/signup", async (req, res) => {
     try {
         const {usename, email,  password} = req.body;
-        const user = singUpUser(usename, email, password);
+        const user = signUpUserTec(usename, email, password);
         if(!!user){
             res.status(201).json(user);
         }

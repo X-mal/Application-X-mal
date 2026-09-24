@@ -1,39 +1,34 @@
-import bcryp from 'bcrypt.js';  
-/* é uma criptografia que é impossivel reverter */
-
-import {validateByUsernameTec, validateByUserEmailTec, createUserTec} from '../../users/repository/userTec.repository.js';
+import { validateByEmailTec, validateByUsernameTec, createUserTec } from '../../shared/users/repositories/users.repository.js'
 
 
-function signUpUserTec(username, email, password) {
-    if(!username || !email || !password) {
-        const error = new Error("Campos nome de usuário, email e senha são obrigatorios");
-        error.statusCode = 500;    /*    500 pode ser um erro na api */
+async function signUpUserTec(username, email, password) {
+    if (!username || !email || !password) {
+        const error = new Error("Campos nome de usuario, email e senha são obrigatorios");
+        error.statusCode = 500;
         throw error;
-    };
-
-    if(validadeByusernameTec(username)) {
-        const error = new Error("Nome de usuário já cadastrado");
+    }
+    if (await validateByUsernameTec(username)) {
+        const error = new Error("Nome de usuario ja cadastrado");
         error.statusCode = 409;
         throw error;
-    };
-    if(validateByEmailTec(email)) {
-        const error = new Error("Email já cadastrado");
+    }
+    if (await validateByEmailTec(email)) {
+        const error = new Error("Email ja registrado");
         error.statusCode = 409;
         throw error;
-    };
-     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await createUser({
+    }
+    try {
+        const user = await createUserTec({
             username,
             email,
-            password: hashedPassword
+            password
         });
         return user;
     } catch (issue) {
-        const error = new Error("Falha ao comunicar com o banco de dados");
-    error.statusCode = 509;
-    throw error; 
-   }
-};
+        const error = new Error("Falha ao comunicar com banco de dados");
+        error.statusCode = 509;
+        throw error;
+    }
+}
 
-export default signUpUserTec;
+export default signUpUserTec
