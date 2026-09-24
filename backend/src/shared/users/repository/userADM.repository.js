@@ -4,18 +4,19 @@ import prisma from "../../../core/database/prisma.client"
 
 async function findByUserNameAMD(username) {
 
-    prisma.userAMD.findUnique({
+   return prisma.userAMD.findUnique({
         where: {
             username
         }
     });
+
 }
 
 /**
  * Listagem de usuarios com campos id,username,status
  */
 async function listUsersAMD() {
-    return prisma.userAMD.findMany({
+    return prisma.userADM.findMany({
         select: {
             id: true,
             username: true,
