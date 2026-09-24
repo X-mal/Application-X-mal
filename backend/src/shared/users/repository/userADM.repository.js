@@ -1,10 +1,10 @@
-import prisma from "../../../core/database/prisma.client"
+import prisma from "../../../core/database/prisma.client.js"
 
 /* Procurando usuarios por username */
 
-async function findByUserNameAMD(username) {
+async function findByUserNameADM(username) {
 
-    prisma.userAMD.findUnique({
+    return prisma.userADM.findUnique({
         where: {
             username
         }
@@ -14,8 +14,8 @@ async function findByUserNameAMD(username) {
 /**
  * Listagem de usuarios com campos id,username,status
  */
-async function listUsersAMD() {
-    return prisma.userAMD.findMany({
+async function listUsersADM() {
+    return prisma.userADM.findMany({
         select: {
             id: true,
             username: true,
@@ -28,8 +28,8 @@ async function listUsersAMD() {
 /**
  * validar por usuario e senha
  */
-async function validateUserAMD(username, PASS) {
-    const user = prisma.userAMD.findFirst({
+async function validateUserADM(username, PASS) {
+    const user = prisma.userADM.findFirst({
         where: {
             username,
             PASS
@@ -42,8 +42,8 @@ async function validateUserAMD(username, PASS) {
 /**
  * função de criar usuario
  */
-async function createUserAMD(data) {
-    return prisma.userAMD.create({
+async function createUserADM(data) {
+    return prisma.userADM.create({
         data,
         select: {
             id: true,
@@ -55,8 +55,8 @@ async function createUserAMD(data) {
 }
 
 export {
-    findByUserNameAMD,
-    listUsersAMD,
-    validateUserAMD,
-    createUserAMD
+    findByUserNameADM,
+    listUsersADM,
+    validateUserADM,
+    createUserADM
 }

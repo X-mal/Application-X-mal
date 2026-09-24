@@ -1,4 +1,4 @@
-import prisma from "../../../core/database/prisma.client"
+import prisma from "../../../core/database/prisma.client.js"
 
 /* Procurando usuarios por username */
 

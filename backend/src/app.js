@@ -1,4 +1,5 @@
 import express from "express";
+import signUpUserTec from "./features/signup/signup.service.js";
 
 const app = express();
 
@@ -45,7 +46,20 @@ app.post("/signin", (req, res) => {         /* o post vai enviar o dado para o b
 /* server.listen(PORT, () => {
         console.log(`Servidor rodando em http://localhost:${PORT}`)
 }); */
-
+app.post("/signup", async (req, res) => {
+    try {
+        const {usename, email,  password} = req.body;
+        const user = singUpUser(usename, email, password);
+        if(!!user){
+            res.status(201).json(user);
+        }
+    }
+    catch (error) {
+        res.status(502).json({message: error.message});
+        console.log(error.message);
+    }
+})
 app.listen(PORT, () => {
         console.log(`servidor iniciado em http://localhost:${PORT}`);
 });
+
