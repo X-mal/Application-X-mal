@@ -1,16 +1,39 @@
 import prisma from "../../../core/database/prisma.client"
 
 /* Procurando usuarios por username */
-
+Fac
 async function findByUserNameFac(username) {
 
-    prisma.userFac.findUnique({
+    return prisma.userFac.findUnique({
         where: {
             username
         }
     });
 }
+async function findByEmailFac(email) {
+    return prisma.userFac.findUnique({
+        where: {
+            email
+        }
+    });
+};
 
+async function validateByUsernameFac(username) {
+    const user = prisma.userFac.findUnique({
+        where: {
+            username
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
+};
+async function validateByUserEmailFac(email) {
+    const user = prisma.userFac.findUnique({
+        where: {
+            email
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como false e a primeira inverte para true */
+}
 /**
  * Listagem de usuarios com campos id,username,status
  */
@@ -53,6 +76,9 @@ async function createUserFac(data) {
 }
 
 export {
+    findByEmailFac,
+    validateByUsernameFac,
+    validateByUserEmailFac,
     findByUserNameFac,
     listUsersFac,
     validateUserFac,

@@ -4,13 +4,37 @@ import prisma from "../../../core/database/prisma.client"
 
 async function findByUserNameTec(username) {
 
-    prisma.userTec.findUnique({
+    return prisma.userTec.findUnique({
         where: {
             username
         }
     });
 }
+async function findByEmailTec(email) {
+    return prisma.userTec.findUnique({
+        where: {
+            email
+        }
+    });
+    return ! ! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
+}
 
+async function validateByUsernameTec(username) {
+    const user = prisma.userTec.findUnique({
+        where: {
+            username
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
+}
+async function validateByUserEmailTec(email) {
+    const user = prisma.userTec.findUnique({
+        where: {
+            email
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como false e a primeira inverte para true */
+}
 /**
  * Listagem de usuarios com campos id,username,status
  */
@@ -53,6 +77,9 @@ async function createUserTec(data) {
 }
 
 export {
+    findByEmailTec,
+    validateByUsernameTec,
+    validateByUserEmailTec,
     findByUserNameTec,
     listUsersTec,
     validateUserTec,
