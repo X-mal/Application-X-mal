@@ -1,5 +1,5 @@
 import express from "express";
-import signUpUserTec from "./features/signup/signup.service.js";
+import signUpUserTec from "./features/signup/signupTec.service.js";
 
 const app = express();
 
@@ -50,9 +50,7 @@ app.post("/signup", async (req, res) => {
     try {
         const {usename, email,  password} = req.body;
         const user = signUpUserTec(usename, email, password);
-        if(!!user){
-            res.status(201).json(user);
-        }
+       
     }
     catch (error) {
         res.status(502).json({message: error.message});
