@@ -64,7 +64,6 @@ app.post("/signup", async (req, res) => {
 
 
 import express from "express";
-import signUpUserTec from "./features/signup/signup.serviceTec.js";
 import signUpRouterTec from "./features/signup/signupTec.route.js";
 
 const app = express();
@@ -75,6 +74,7 @@ app.use(express.json());
 
 //Rotas das funcionalidades
 app.use('/signup', signUpRouterTec);
+app.use('/signup')
 
 app.listen(PORT, () => {
     console.log(`servidor iniciado em http://localhost:${PORT}`);

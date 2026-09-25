@@ -1,4 +1,5 @@
-import { validateByEmailTec, validateByUsernameTec, createUserTec } from '../../shared/users/repositories/users.repository.js'
+import bcrypt from 'bcrypt'
+import { validateByUsernameTec, validateByEmailTec, createUserTec } from './signupTec.repository.js'
 
 
 async function signUpUserTec(username, email, password) {
@@ -18,10 +19,11 @@ async function signUpUserTec(username, email, password) {
         throw error;
     }
     try {
+        const hashedPassword = await bcrypt.hash(password, 10);
         const user = await createUserTec({
             username,
             email,
-            password
+            password: hashedPassword
         });
         return user;
     } catch (issue) {

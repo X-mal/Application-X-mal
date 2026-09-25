@@ -1,4 +1,4 @@
-import signUpUserTec from "./signupTec.service";
+import signUpUserTec from "./signupTec.service.js";
 
 async function signupControllerTec(req, res) {
     try {
