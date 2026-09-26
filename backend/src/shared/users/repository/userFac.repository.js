@@ -1,17 +1,17 @@
 import prisma from "../../../core/database/prisma.client.js"
 
 /* Procurando usuarios por username */
-Fac
+
 async function findByUserNameFac(username) {
 
-    return prisma.userFac.findUnique({
+    return prisma.userfac.findFirst({
         where: {
             username
         }
     });
 }
 async function findByEmailFac(email) {
-    return prisma.userFac.findUnique({
+    return prisma.userfac.findFirst({
         where: {
             email
         }
@@ -19,7 +19,7 @@ async function findByEmailFac(email) {
 };
 
 async function validateByUsernameFac(username) {
-    const user = await prisma.userFac.findUnique({
+    const user = await prisma.userfac.findFirst({
         where: {
             username
         }
@@ -27,7 +27,7 @@ async function validateByUsernameFac(username) {
     return !! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
 };
 async function validateByUserEmailFac(email) {
-    const user = await prisma.userFac.findUnique({
+    const user = await prisma.userfac.findFirst({
         where: {
             email
         }
@@ -38,7 +38,7 @@ async function validateByUserEmailFac(email) {
  * Listagem de usuarios com campos id,username,status
  */
 async function listUsersFac() {
-    return prisma.userFac.findMany({
+    return prisma.userfac.findMany({
         select: {
             id: true,
             username: true,
@@ -50,11 +50,11 @@ async function listUsersFac() {
 /**
  * validar por usuario e senha
  */
-async function validateUserFac(username, password) {
-    const user = await prisma.userFac.findFirst({
+async function validateUserFac(username, pass) {
+    const user = await prisma.userfac.findFirst({
         where: {
             username,
-            password
+            pass
         }
     });
 
@@ -65,12 +65,13 @@ async function validateUserFac(username, password) {
  * função de criar usuario
  */
 async function createUserFac(data) {
-    return prisma.userFac.create({
+    return prisma.userfac.create({
         data,
         select: {
             id: true,
             username: true,
-            situacao: "cursando"
+            pass: true,
+            turno: true
         }
     });
 }

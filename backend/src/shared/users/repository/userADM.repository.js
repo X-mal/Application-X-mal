@@ -4,7 +4,7 @@ import prisma from "../../../core/database/prisma.client.js"
 
 async function findByUserNameADM(username) {
 
-    return prisma.userADM.findUnique({
+    return prisma.useradm.findFirst({
         where: {
             username
         }
@@ -15,7 +15,7 @@ async function findByUserNameADM(username) {
  * Listagem de usuarios com campos id,username,status
  */
 async function listUsersADM() {
-    return prisma.userADM.findMany({
+    return prisma.useradm.findMany({
         select: {
             id: true,
             username: true,
@@ -28,11 +28,11 @@ async function listUsersADM() {
 /**
  * validar por usuario e senha
  */
-async function validateUserADM(username, PASS) {
-    const user = await prisma.userADM.findFirst({
+async function validateUserADM(username, pass) {
+    const user = await prisma.useradm.findFirst({
         where: {
             username,
-            PASS
+            pass
         }
     });
 
@@ -43,11 +43,12 @@ async function validateUserADM(username, PASS) {
  * função de criar usuario
  */
 async function createUserADM(data) {
-    return prisma.userADM.create({
+    return prisma.useradm.create({
         data,
         select: {
             id: true,
             username: true,
+            pass: true,
             setor: 'faculdade',
             estado: 'ativo'
         }

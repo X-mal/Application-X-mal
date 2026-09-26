@@ -62,7 +62,7 @@ app.post("/signup", async (req, res) => {
 });
 */
 
-
+import 'dotenv/config';
 import express from "express";
 import signUpRouterTec from "./features/signup/signupTec.route.js";
 
@@ -74,7 +74,6 @@ app.use(express.json());
 
 //Rotas das funcionalidades
 app.use('/signup', signUpRouterTec);
-app.use('/signup')
 
 app.listen(PORT, () => {
     console.log(`servidor iniciado em http://localhost:${PORT}`);

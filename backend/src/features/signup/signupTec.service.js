@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt'
-import { validateByUsernameTec, validateByEmailTec, createUserTec } from './signupTec.repository.js'
+import {validateByEmailTec,  validateByUsernameTec, createUserTec} from '../../shared/users/repository/userTec.repository.js'
 
 
-async function signUpUserTec(username, email, password) {
-    if (!username || !email || !password) {
-        const error = new Error("Campos nome de usuario, email e senha são obrigatorios");
+async function signUpUserTec(ra, username, email, pass, curso, turno) {
+    if (!ra || !username || !email || !pass || !curso || !turno) {
+        const error = new Error("Campos RA, nome de usuario, email, senha, curso e turno são obrigatorios");
+        console.error("ra:", ra, "username:", username, "email:", email, "pass:", pass, "curso:", curso, "turno:", turno);
         error.statusCode = 500;
         throw error;
     }
@@ -19,15 +20,19 @@ async function signUpUserTec(username, email, password) {
         throw error;
     }
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPass = await bcrypt.hash(pass, 10);
         const user = await createUserTec({
+            ra,
             username,
             email,
-            password: hashedPassword
+            pass: hashedPass,
+            curso,
+            turno
+
         });
         return user;
     } catch (issue) {
-        const error = new Error("Falha ao comunicar com banco de dados");
+        const error = new Error("Falha ao comunicar com banco de dados: "+ issue.message);
         error.statusCode = 509;
         throw error;
     }
