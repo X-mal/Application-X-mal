@@ -1,21 +1,44 @@
-import prisma from "../../../core/database/prisma.client"
+import prisma from "../../../core/database/prisma.client.js"
 
 /* Procurando usuarios por username */
 
 async function findByUserNameFac(username) {
 
-    prisma.userFac.findUnique({
+    return prisma.userfac.findFirst({
         where: {
             username
         }
     });
 }
+async function findByEmailFac(email) {
+    return prisma.userfac.findFirst({
+        where: {
+            email
+        }
+    });
+};
 
+async function validateByUsernameFac(username) {
+    const user = await prisma.userfac.findFirst({
+        where: {
+            username
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
+};
+async function validateByUserEmailFac(email) {
+    const user = await prisma.userfac.findFirst({
+        where: {
+            email
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como false e a primeira inverte para true */
+}
 /**
  * Listagem de usuarios com campos id,username,status
  */
 async function listUsersFac() {
-    return prisma.userFac.findMany({
+    return prisma.userfac.findMany({
         select: {
             id: true,
             username: true,
@@ -27,11 +50,11 @@ async function listUsersFac() {
 /**
  * validar por usuario e senha
  */
-async function validateUserFac(username, password) {
-    const user = prisma.userFac.findFirst({
+async function validateUserFac(username, pass) {
+    const user = await prisma.userfac.findFirst({
         where: {
             username,
-            password
+            pass
         }
     });
 
@@ -42,17 +65,21 @@ async function validateUserFac(username, password) {
  * função de criar usuario
  */
 async function createUserFac(data) {
-    return prisma.userFac.create({
+    return prisma.userfac.create({
         data,
         select: {
             id: true,
             username: true,
-            situacao: "cursando"
+            pass: true,
+            turno: true
         }
     });
 }
 
 export {
+    findByEmailFac,
+    validateByUsernameFac,
+    validateByUserEmailFac,
     findByUserNameFac,
     listUsersFac,
     validateUserFac,

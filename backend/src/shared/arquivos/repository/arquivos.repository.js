@@ -1,7 +1,7 @@
 import prisma from "../../../core/database/prisma.client.js"
 /* Busca o id do arquivo */
 async function findByArchiveID(id){
-    return prisma.arquivos.findUnique({
+    return prisma.arquivos.findFirst({
             where: {
                 id
             }
@@ -14,7 +14,7 @@ async function createArchive(data){
         select: {
             id: true,
             descricao: true,
-            estado: 'recebido',
+            estado: true,
             idtec: true,
             idfac: true,
             arquivo: true

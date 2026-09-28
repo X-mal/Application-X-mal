@@ -1,25 +1,52 @@
-import prisma from "../../../core/database/prisma.client"
+import prisma from "../../../core/database/prisma.client.js"
 
 /* Procurando usuarios por username */
 
 async function findByUserNameTec(username) {
 
-    prisma.userTec.findUnique({
+    return prisma.usertec.findFirst({
         where: {
             username
         }
     });
 }
+async function findByEmailTec(email) {
+    return prisma.usertec.findFirst({
+        where: {
+            email
+        }
+    });
+}
 
+async function validateByUsernameTec(username) {
+    const user = await prisma.usertec.findFirst({
+        where: {
+            username
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como true e a primeira inverte para false */
+}
+async function validateByEmailTec(email) {
+    const user = await prisma.usertec.findFirst({
+        where: {
+            email
+        }
+    });
+    return !! user;   /* a segunda esclamação cria o boleano como false e a primeira inverte para true */
+}
 /**
  * Listagem de usuarios com campos id,username,status
  */
 async function listUsersTec() {
-    return prisma.userTec.findMany({
+    return prisma.usertec.findMany({
         select: {
             id: true,
+            ra: true,
             username: true,
-            situacao: "cursando"
+            email: true,
+            curso: true,
+            situacao: "cursando",
+            turno: true
         }
     });
 }
@@ -27,11 +54,14 @@ async function listUsersTec() {
 /**
  * validar por usuario e senha
  */
-async function validateUserTec(username, password) {
-    const user = prisma.userTec.findFirst({
+async function validateUserTec(ra, username, email, pass, turno) {
+    const user = await prisma.usertec.findFirst({
         where: {
+            ra,
             username,
-            password
+            email,
+            pass,
+            turno
         }
     });
 
@@ -42,17 +72,23 @@ async function validateUserTec(username, password) {
  * função de criar usuario
  */
 async function createUserTec(data) {
-    return prisma.userTec.create({
+    return prisma.usertec.create({
         data,
         select: {
             id: true,
             username: true,
-            situacao: "cursando"
+            email: true,
+            pass: true,
+            curso: true,
+            turno: true
         }
     });
 }
 
 export {
+    findByEmailTec,
+    validateByUsernameTec,
+    validateByEmailTec,
     findByUserNameTec,
     listUsersTec,
     validateUserTec,
