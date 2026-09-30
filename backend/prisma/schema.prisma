@@ -12,11 +12,9 @@ model arquivos {
   email     String              @db.VarChar(255)
   pass      String              @db.VarChar(255)
   estado    estado_arquivo_enum @default(recebido)
-  idtec     Int
-  idfac     Int
+  iduser    Int
   resposta  String              @db.VarChar(255)
-  userfac   userfac             @relation(fields: [idfac], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_userfac")
-  usertec   usertec             @relation(fields: [idtec], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_usertec")
+  user      user                @relation(fields: [iduser], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
   resp      resp[]
 }
 
@@ -40,25 +38,14 @@ model useradm {
 
 }
 
-model userfac {
+model user {
   id       Int           @id @default(autoincrement())
   ra       String        @unique @db.VarChar(255)
   username String        @db.VarChar(250)
   email    String        @db.VarChar(250)
   pass     String        @db.VarChar(250)
   curso    String        @db.VarChar(255)
-  turno    turno_enum
-  situacao situacao_enum @default(cursando)
-  arquivos arquivos[]
-}
-
-model usertec {
-  id       Int           @id @default(autoincrement())
-  ra       String        @unique @db.VarChar(255)
-  username String        @db.VarChar(250)
-  email    String        @db.VarChar(250)
-  pass     String        @db.VarChar(250)
-  curso    String        @db.VarChar(255)
+  instituto instituto_enum 
   turno    turno_enum
   situacao situacao_enum @default(cursando)
   arquivos arquivos[]
@@ -79,6 +66,11 @@ enum situacao_enum {
   cursando
   trancado
   finalizado
+}
+
+enum instituto_enum {
+  tecnico
+  faculdade
 }
 
 enum turno_enum {

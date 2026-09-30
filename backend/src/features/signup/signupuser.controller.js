@@ -1,9 +1,9 @@
-import signUpUserTec from "./signupTec.service.js";
+import signUpUser from "./signupuser.service.js";
 
-async function signupControllerTec(req, res) {
+async function signupController(req, res) {
     try {
-        const { ra, username, email, password, curso, turno} = req.body;
-        const user = await signUpUserTec(ra, username, email, password, curso, turno);
+        const { ra, username, email, password, curso, instituto, turno} = req.body;
+        const user = await signUpUser(ra, username, email, password, curso, instituto, turno);
         res.status(201).json(user);
     } catch (error) {
         res.status(error.statusCode || 502).json({
@@ -12,4 +12,4 @@ async function signupControllerTec(req, res) {
     }
 }
 
-export default signupControllerTec;
+export default signupController;
