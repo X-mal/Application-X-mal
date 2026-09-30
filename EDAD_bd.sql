@@ -75,7 +75,7 @@ CREATE TABLE arquivos(
 
 CREATE TABLE resp(
     id int NOT Null UNIQUE PRIMARY Key AUTO_INCREMENT,
-    respota text not null,
+    resposta text not null,
     arquivo int NOT NULL,
     adm int NOT NULL,
     CONSTRAINT fk_arquivos_resp

@@ -4,18 +4,28 @@ import prisma from "../../../core/database/prisma.client.js"
 
 async function findByUserNameADM(username) {
 
+<<<<<<< HEAD
+   return prisma.userAMD.findUnique({
+=======
     return prisma.useradm.findFirst({
+>>>>>>> 0a93ff30d77717be66f6a55605a5658606a8235e
         where: {
             username
         }
     });
+
 }
 
 /**
  * Listagem de usuarios com campos id,username,status
  */
+<<<<<<< HEAD
+async function listUsersAMD() {
+    return prisma.userADM.findMany({
+=======
 async function listUsersADM() {
     return prisma.useradm.findMany({
+>>>>>>> 0a93ff30d77717be66f6a55605a5658606a8235e
         select: {
             id: true,
             username: true,
