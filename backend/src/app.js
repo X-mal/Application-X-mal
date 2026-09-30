@@ -83,7 +83,6 @@ app.use('/signup', signUpRouter);
 app.use('/signin',authMiddleWare, signInRouter);
 
 
-
 app.listen(PORT, () => {
     console.log(`servidor iniciado em http://localhost:${PORT}`);
 });

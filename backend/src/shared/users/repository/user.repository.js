@@ -78,6 +78,7 @@ async function createUser(data) {
         data,
         select: {
             id: true,
+            ra: true,
             username: true,
             email: true,
             pass: true,
