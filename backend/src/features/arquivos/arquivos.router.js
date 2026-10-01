@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { create, getById } from "../controllers/arquivoController.js"; 
-// ^ Ajuste o caminho acima se a sua pasta de controllers for diferente
 
 const arquivoRouter = Router();
 
