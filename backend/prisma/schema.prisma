@@ -9,18 +9,15 @@ datasource db {
 model arquivos {
   id        Int                 @id @default(autoincrement())
   descricao String              @db.VarChar(255)
-  email     String              @db.VarChar(255)
-  pass      String              @db.VarChar(255)
-  estado    estado_arquivo_enum @default(recebido)
+  estado    estado_arquivo_enum @default(enviado)
   iduser    Int
-  resposta  String              @db.VarChar(255)
   user      user                @relation(fields: [iduser], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
   resp      resp[]
 }
 
 model resp {
   id       Int      @id @default(autoincrement())
-  resposta String
+  resposta String   @db.VarChar(255)
   arquivo  Int
   adm      Int
   useradm  useradm  @relation(fields: [adm], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_adm_resp")
@@ -52,6 +49,7 @@ model user {
 }
 
 enum estado_arquivo_enum {
+  enviado
   recebido
   negado
   aprovado

@@ -4,7 +4,7 @@ const mockFindByEmail = jest.fn();
 const mockComparePassword = jest.fn();
 const mockGenerateToken = jest.fn(() => "token-fake");
 
-jest.unstable_mockModule("../../../src/shared/users/repositories/user.repository.js", () => ({
+jest.unstable_mockModule("../../../src/shared/users/repository/user.repository.js", () => ({
     findByEmail: mockFindByEmail,
 }));
 
@@ -28,7 +28,7 @@ describe("signIn", () => {
             ra: "1",
             username: "joao",
             email: "joao@email.com",
-            password: "hash-da-senha",
+            pass: "hash-da-senha",
             curso: "MECATRONICA",
             instituto: "faculdade",
             turno: "matutino"
@@ -44,7 +44,7 @@ describe("signIn", () => {
             ra: "1",
             username: "joao",
             email: "joao@email.com",
-            password: "hash-da-senha",
+            pass: "hash-da-senha",
             curso: "MECATRONICA",
             instituto: "faculdade",
             turno: "matutino"
@@ -56,7 +56,7 @@ describe("signIn", () => {
                 ra: "1",
                 username: "joao",
                 email: "joao@email.com",
-                password: "hash-da-senha",
+                pass: "hash-da-senha",
                 curso: "MECATRONICA",
                 instituto: "faculdade",
                 turno: "matutino"
@@ -69,7 +69,7 @@ describe("signIn", () => {
 
         await expect(signIn("naoexiste@email.com", "123456")).rejects.toMatchObject({
             statusCode: 404,
-            message: "Email não esta associado a uma conta"
+            "message":"Email não está associado a uma conta"
         });
     });
 
@@ -78,7 +78,7 @@ describe("signIn", () => {
             ra: "1",
             username: "joao",
             email: "joao@email.com",
-            password: "hash-da-senha",
+            pass: "hash-da-senha",
             curso: "MECATRONICA",
             instituto: "faculdade",
             turno: "matutino"
@@ -88,7 +88,7 @@ describe("signIn", () => {
 
         await expect(signIn("joao@email.com", "senha-errada")).rejects.toMatchObject({
             statusCode: 409,
-            message: "Senha incorreta"
+            "message":"Senha incorreta"
         });
     });
 });
