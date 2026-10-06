@@ -67,6 +67,8 @@ import express from "express";
 import signUpRouter from "./features/signup/signupuser.route.js";
 import signInRouter from "./features/signin/signinuser.route.js";
 import authMiddleWare from "./core/security/auth.middleware.js";
+import arquivoRouter from "./features/arquivos/arquivos.router.js";
+import respostaRouter from "./features/respostas/resposta.route.js";
 
 const app = express();
 
@@ -81,6 +83,11 @@ app.use('/signup', signUpRouter);
 //Rotas Privadas
 /* Exemplo */
 app.use('/signin',authMiddleWare, signInRouter);
+
+//Router arquivos
+app.use('/arquivo', arquivoRouter);
+//Router resposta 
+app.use('/resposta', respostaRouter);
 
 
 app.listen(PORT, () => {
