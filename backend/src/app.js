@@ -94,5 +94,3 @@ app.listen(PORT, () => {
     console.log(`servidor iniciado em http://localhost:${PORT}`);
 });
 
-
-
