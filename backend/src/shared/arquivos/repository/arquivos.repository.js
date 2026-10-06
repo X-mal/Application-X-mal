@@ -17,9 +17,8 @@ async function createArchive(data){
             id: true,
             descricao: true,
             estado: true,
-            idtec: true,
-            idfac: true,
-            arquivo: true
+            iduser: true,
+            resposta: true
         }
         });
 }   
