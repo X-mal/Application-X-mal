@@ -74,9 +74,13 @@ const PORT = 8081;
 
 app.use(express.json());
 
+
 //Rotas Publicas
 app.use('/signup', signUpRouter);
 /* app.use('/signin', signInRouter); */
+ 
+
+
 
 //Rotas Privadas
 /* Exemplo */
