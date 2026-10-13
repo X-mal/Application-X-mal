@@ -2,6 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import Navbar from '../../../components/navbar.component.js';
 import SignUpForm from '../../../components/SignUpForm.component.js';
+
+import { MenuComponents } from "../../../data/MenuItens.js";
+
 export default function HomePag() {
     return (
         <View>

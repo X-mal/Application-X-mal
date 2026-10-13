@@ -64,9 +64,7 @@ app.post("/signup", async (req, res) => {
 
 import 'dotenv/config';
 import express from "express";
-import signUpRouter from "./features/signup/signupuser.route.js";
-import signInRouter from "./features/signin/signinuser.route.js";
-import authMiddleWare from "./core/security/auth.middleware.js";
+import signUpRouterTec from "./features/signup/signupTec.route.js";
 import arquivoRouter from "./features/arquivos/arquivos.router.js";
 import respostaRouter from "./features/respostas/resposta.route.js";
 
@@ -76,25 +74,16 @@ const PORT = 8081;
 
 app.use(express.json());
 
-
-//Rotas Publicas
-app.use('/signup', signUpRouter);
-/* app.use('/signin', signInRouter); */
- 
-
-
-
-//Rotas Privadas
-/* Exemplo */
-app.use('/signin',authMiddleWare, signInRouter);
-
+//Rotas das funcionalidades
+app.use('/signup', signUpRouterTec);
 //Router arquivos
-app.use('/arquivo', arquivoRouter);
+app.use(arquivoRouter);
 //Router resposta 
-app.use('/resposta', respostaRouter);
-
+app.use(respostaRouter);
 
 app.listen(PORT, () => {
     console.log(`servidor iniciado em http://localhost:${PORT}`);
 });
+
+
 

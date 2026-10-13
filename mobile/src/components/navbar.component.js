@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {Text, StyleSheet, View, Pressable } from "react-native"
-
+import SignInModal from "./SignInModal.components";
 
 /* export default function Menu({it1, it2, it3}  ) {
     return(
@@ -14,6 +14,10 @@ import {Text, StyleSheet, View, Pressable } from "react-native"
 
 
 export default function Navbar({ itens }) {
+    const [signinmodalV, setModalSignInV] = useState(false);
+    const handleSignIN = ({email, password}) => {
+        //Logica de programação para login com API
+    }
     return(
             <View style={styles.container}>
                 {
