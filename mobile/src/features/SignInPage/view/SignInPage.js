@@ -1,7 +1,7 @@
 
 import React from "react";
 import { View, StyleSheet, Text, CodegenTypes } from "react-native";
-import Navbar from "../../../components/Navbar.component";
+import Navbar from "../../../components/navbar.component.js";
 import { MenuComponents } from "../../../data/MenuComponents";
 
 function SignInPage({ navigation }) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import Navbar from "../../../components/Navbar.component";
+import Navbar from "../../../components/navbar.component.js";
 import { MenuComponents } from "../../../data/MenuComponents";
 
 function SignUpPage({ navigation }) {
@@ -22,7 +22,6 @@ const style = StyleSheet.create({
         backgroundColor: '#274871',
         borderRadius: 10,
     },
-    input: {
   container:{
         gap: 5,
         backgroundColor: '#4b8ee1',
@@ -34,10 +33,10 @@ const style = StyleSheet.create({
     },
     div:{
         margin: 10
-    } 
+    },
 });
 
-export default SignUpPage
+export default SignUpPage;
 
 /* Adson Code
 import React from "react";

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import  Navbar from '../../../components/navbar.component.js';
+import Navbar from '../../../components/navbar.component.js';
 import SignUpForm from '../../../components/SignUpForm.component.js';
-import { MenuComponents } from "../../../data/MenuComponents";
+import { MenuComponents } from "../../../data/MenuComponents.js";
 
 /* export default function HomePag() {
     return (
@@ -32,7 +32,7 @@ function HomePage({ navigation }) {
     );
 }
 
-
+export default HomePage;
 /* Adson Code
 import React from 'react';
 import { View } from 'react-native';
