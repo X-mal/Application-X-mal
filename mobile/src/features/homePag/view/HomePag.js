@@ -1,7 +1,46 @@
 import React from 'react';
 import { View } from 'react-native';
+import  Navbar from '../../../components/navbar.component.js';
+import SignUpForm from '../../../components/SignUpForm.component.js';
+import { MenuComponents } from "../../../data/MenuComponents";
+
+/* export default function HomePag() {
+    return (
+        <View>
+                <Navbar
+                    itens={[
+                        { label: "HOME", link: "http://localhost" },
+                        { label: "google", link: "https://google.com" },
+                        { label: "github", link: "https://github.com" },
+                    ]}
+                />
+                <SignUpForm></SignUpForm>
+        </View>
+  );
+} */
+
+function HomePage({ navigation }) {
+    return (
+        <View>
+             <Navbar
+               logoImg={MenuComponents["naologado"].logoImg}
+                itens={MenuComponents["naologado"].itens}
+                navigation={navigation}
+            />
+
+        </View>
+    );
+}
+
+
+/* Adson Code
+import React from 'react';
+import { View } from 'react-native';
 import Navbar from '../../../components/navbar.component.js';
 import SignUpForm from '../../../components/SignUpForm.component.js';
+
+import { MenuComponents } from "../../../data/MenuItens.js";
+
 export default function HomePag() {
     return (
         <View>
@@ -15,6 +54,4 @@ export default function HomePag() {
                 <SignUpForm></SignUpForm>
         </View>
   );
-}
-
-
+} */
