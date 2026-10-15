@@ -1,6 +1,6 @@
 
 function GetMenuComponents(status, actions = {}) {
-    const fucapi_logo = require("../../assets/logo.png")
+    const fucapi_logo = require("../../assets/splash-icon.png");
     const MenuComponents = {
         naologado: {
             logoImg: fucapi_logo,

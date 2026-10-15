@@ -19,7 +19,7 @@ import { MenuComponents } from "../../../data/MenuComponents.js";
   );
 } */
 
-function HomePage({ navigation }) {
+export default function HomePage({ navigation }) {
     return (
         <View>
              <Navbar
@@ -32,7 +32,6 @@ function HomePage({ navigation }) {
     );
 }
 
-export default HomePage;
 /* Adson Code
 import React from 'react';
 import { View } from 'react-native';

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import HomePage from './src/features/HomePage/view/HomePage.js';
+import HomePage from './src/features/HomePage/view/HomePage.js'
 import SignInPage from './src/features/SignInPage/view/SignInPage.js';
 import SignUpPage from './src/features/SignUpPage/view/SignUpPage.js';
 

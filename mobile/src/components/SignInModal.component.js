@@ -97,7 +97,6 @@ const style = StyleSheet.create({
 
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import SignInModal from "./SignInModal.component";
 import GetMenuComponents from "../data/MenuComponents.js";
 
 function Navbar({ navigation }) {
