@@ -94,64 +94,113 @@ const style = StyleSheet.create({
 });
  */
 
-
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import GetMenuComponents from "../data/MenuComponents.js";
+import {
+    Modal,
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    KeyboardAvoidingView,
+    Platform,
+} from "react-native";
 
-function Navbar({ navigation }) {
-    const menu = GetMenuComponents("naologado", {
-        home: () => navigation.navigate("Home"),
-        signUp: () => navigation.navigate("SignUp"),
-        signIn: () => setModalSignInV(true),
-        profile: () => navigation.navigate("Profile"),
-    });
-    const [signinmodalV, setModalSignInV] = useState(false);
-    const handleSignIn = ({ email, password }) => {
-        //Logica de programação
-    }
+function SignInModal({ visible, onClose, mode, onSubmit }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const isSignIn = mode === "signin";
+
     return (
-        <View style={styles.container}>
-            <Image
-                source={menu.logoImg}
-                style={styles.logo}
-                resizeMode="contain"></Image>
-            {
-                menu.itens.map((item, index) => (
-                    <Pressable
-                        key={index}
-                        onPress={item.onPress}
-                        style={styles.linkbox}>
-                        {
-                            item.type === "text" ? (
-                                <Text style={styles.linktext}>{item.label}</Text>
-                            ) : (
-                                <Image
-                                    source={item.icon}
-                                    style={styles.icon}
-                                    resizeMode="contain"
-                                />
-                            )
-                        }
-                    </Pressable>
-                ))
-            }
-            <SignInModal
-                visible={signinmodalV}
-                onClose={() => setModalSignInV(false)}
-                mode="signin"
-                onSubmit={handleSignIn}>
-            </SignInModal>
-        </View >
+        <Modal
+            transparent
+            visible={visible}
+            animationType="fade"
+            onRequestClose={onClose}
+        >
+            <TouchableWithoutFeedback onPress={onClose}>
+                <View style={styles.overlay}>
+                    <TouchableWithoutFeedback>
+                        <KeyboardAvoidingView
+                            behavior={Platform.OS === "ios" ? "padding" : undefined}
+                            style={styles.card}
+                        >
+                            <Text style={styles.title}>
+                                {isSignIn ? "Fazer Login" : "Cadastrar"}
+                            </Text>
+
+                            <TextInput
+                                placeholder="Email"
+                                value={email}
+                                onChangeText={setEmail}
+                                style={styles.input}
+                                placeholderTextColor="#7b7b7b"
+                                autoCapitalize="none"
+                                keyboardType="email-address"
+                            />
+
+                            <TextInput
+                                placeholder="Senha"
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry
+                                style={styles.input}
+                                placeholderTextColor="#7b7b7b"
+                            />
+
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={() => onSubmit({ email, password })}
+                            >
+                                <Text style={styles.buttonLabel}>
+                                    {isSignIn ? "Entrar" : "Criar conta"}
+                                </Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                                <Text style={styles.closeText}>Fechar</Text>
+                            </TouchableOpacity>
+                        </KeyboardAvoidingView>
+                    </TouchableWithoutFeedback>
+                </View>
+            </TouchableWithoutFeedback>
+        </Modal>
     );
 }
 
+const styles = StyleSheet.create({
 
-const style = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        gap: 10,
+        backgroundColor: "#327dbb",
+        borderRadius: 8,
+        marginTop: 40,
+    },
+    logo: {
+        width: 100,
+        height: 50,
+        padding: 4,
+    },
+    icon: {
+        width: 50,
+        height: 25,
+        padding: 3,
+    },
+    linkbox: {
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+    },
+    linktext: {
+        color: "#e95656",
+        fontSize: 14,
+    },
 
  overlay: {
         flex: 1,
-        backgroundColor: "rgba(10, 29, 73, 0.55)",
+        backgroundColor: "rgba(32, 41, 61, 0.55)",
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
@@ -159,7 +208,7 @@ const style = StyleSheet.create({
     card: {
         width: "100%",
         maxWidth: 380,
-        backgroundColor: "#488b77",
+        backgroundColor: "#226f9e",
         borderRadius: { topLeft: 18, topRight: 0, bottomLeft: 18, bottomRight: 0 },
         padding: 22,
         shadowColor: "#000",
@@ -171,20 +220,20 @@ const style = StyleSheet.create({
     title: {
         fontSize: 22,
         fontWeight: "700",
-        color: "#1f2937",
+        color: "#fbfbfb",
         marginBottom: 18,
         textAlign: "center",
     },
     input: {
-        backgroundColor: "#4675d3",
+        backgroundColor: "#c8cace",
         borderWidth: 1,
-        borderColor: "#e5e7eb",
+        borderColor: "#a1a1a1",
         borderRadius: 12,
         paddingHorizontal: 14,
         paddingVertical: 12,
         marginBottom: 12,
         fontSize: 15,
-        color: "#111827",
+        color: "#000000",
     },
     button: {
         backgroundColor: "#0cc737",
@@ -201,12 +250,16 @@ const style = StyleSheet.create({
     closeButton: {
         marginTop: 14,
         alignItems: "center",
+         backgroundColor: "#fd0303",
+        borderRadius: 12,
+        paddingVertical: 14,
+        
     },
     closeText: {
-        color: "#c70707",
+        color: "#ffffff",
         fontWeight: "600",
         fontSize: 14,
     },
 });
 
-export default { SignInModal }
+export default  SignInModal 

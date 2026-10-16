@@ -1,9 +1,8 @@
-
 function GetMenuComponents(status, actions = {}) {
-    const fucapi_logo = require("../../assets/splash-icon.png");
+    const EDAD_logo = require("../../assets/splash-icon.png");
     const MenuComponents = {
         naologado: {
-            logoImg: fucapi_logo,
+            logoImg: EDAD_logo,
             itens: [
                 {
                     label: "HOME",
@@ -23,7 +22,7 @@ function GetMenuComponents(status, actions = {}) {
             ],
         },
         logado: {
-            logoImg: fucapi_logo,
+            logoImg: EDAD_logo,
             itens: [
                 {
                     label: "Profile",

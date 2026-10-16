@@ -1,15 +1,14 @@
-
 import React from "react";
 import { View, StyleSheet, Text, CodegenTypes } from "react-native";
 import Navbar from "../../../components/navbar.component.js";
-import { MenuComponents } from "../../../data/MenuComponents";
+import GetMenuComponents   from "../../../data/MenuComponents";
 
 function SignInPage({ navigation }) {
     return (
         <View>
             <Navbar
-                logoImg={MenuComponents["naologado"].logoImg}
-                itens={MenuComponents["naologado"].itens}
+                logoImg={GetMenuComponents("naologado").logoImg}
+                itens={GetMenuComponents("naologado").itens}
                 navigation={navigation}></Navbar>
             <Text>Esta e a pagina de Login</Text>
         </View>
@@ -17,7 +16,7 @@ function SignInPage({ navigation }) {
 
 
 }
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
      container:{
         gap: 5,
         backgroundColor: '#4b8ee1',
@@ -37,9 +36,6 @@ export default SignInPage
 
 
 /* Adson Code
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import Navbar from "../../../components/Navbar.component";
 
 function SignInPage({ navigation }) {
     return (

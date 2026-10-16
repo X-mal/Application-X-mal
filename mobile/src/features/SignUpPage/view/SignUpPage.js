@@ -1,16 +1,15 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, CodegenTypes } from "react-native";
 import Navbar from "../../../components/navbar.component.js";
-import { MenuComponents } from "../../../data/MenuComponents";
+import  GetMenuComponents  from "../../../data/MenuComponents";
 
 function SignUpPage({ navigation }) {
     return (
         <View>
-             <Navbar
-                 logoImg={MenuComponents["naologado"].logoImg}
-                itens={MenuComponents["naologado"].itens}
+            <Navbar
+                logoImg={GetMenuComponents("naologado").logoImg}
+                itens={GetMenuComponents("naologado").itens}
                 navigation={navigation}></Navbar>
-
             <Text>Esta e a pagina de Cadastro</Text>
         </View>
     );
@@ -39,9 +38,6 @@ const style = StyleSheet.create({
 export default SignUpPage;
 
 /* Adson Code
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import Navbar from "../../../components/Navbar.component";
 
 function SignUpPage({ navigation }) {
     return (
