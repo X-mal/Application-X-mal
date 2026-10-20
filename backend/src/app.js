@@ -68,7 +68,7 @@ import signUpRouter from "./features/signup/signupuser.route.js";
 import signInRouter from "./features/signin/signinuser.route.js";
 import authMiddleWare from "./core/security/auth.middleware.js";
 import arquivoRouter from "./features/arquivos/arquivos.router.js";
-import respostaRouter from "./features/respostas/resposta.route.js";
+import respostaRouter from "./features/respostas/resposta.router.js";
 
 const app = express();
 
