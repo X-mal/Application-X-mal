@@ -1,7 +1,7 @@
 // src/services/arquivoService.js
 
 // 1. Importa as funções do teu arquivo Repository
-import { createArchive, findByArchiveID } from "../repositories/arquivoRepository.js";
+import { createArchive, findByArchiveID } from "../../shared/arquivos/repository/arquivos.repository.js";
 
 // Função para procurar um arquivo por ID
 export async function getArquivoByIdService(id) {

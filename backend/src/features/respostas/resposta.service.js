@@ -1,7 +1,7 @@
 // src/services/respostaService.js
 
 // 1. Importa as funções exportadas pelo seu Repository
-import { createResposta, respostaArchive } from "../repositories/respostaRepository.js";
+import { createResposta, respostaArchive } from "../../shared/resposta/repository/resp.repository.js";
 
 // Função para buscar/obter a resposta por ID
 export async function getRespostaService(id) {
