@@ -1,5 +1,5 @@
 // src/controllers/arquivoController.js
-import { createArquivoService, getArquivoByIdService } from "../services/arquivoService.js";
+import { createArquivoService, getArquivoByIdService } from "./arquivos.service";
 
 export async function create(req, res, next) {
   try {
