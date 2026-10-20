@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { create, getById } from "../../controllers/respostaController.js"; 
+import { create, getById } from "./resposta.controller"; 
 
 const respostaRouter = Router();
 
