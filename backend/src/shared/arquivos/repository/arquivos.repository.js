@@ -1,4 +1,4 @@
-import prisma from "../../../core/database/prisma.client.js"
+import prisma from "../../../core/database/prisma.cliente.js"
 /* Busca o id do arquivo */
 async function findByArchiveID(id){
 
