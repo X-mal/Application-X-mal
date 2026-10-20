@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { create, getById } from "../controllers/arquivoController.js"; 
+import { create, getById } from "./arquivos.controller.js"; 
 
 const arquivoRouter = Router();
 
