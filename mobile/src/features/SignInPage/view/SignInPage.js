@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, CodegenTypes } from "react-native";
+import { View, StyleSheet, Text, CodegenTypes,  } from "react-native";
 import Navbar from "../../../components/navbar.component.js";
 import GetMenuComponents   from "../../../data/MenuComponents";
 

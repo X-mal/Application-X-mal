@@ -1,5 +1,5 @@
 function GetMenuComponents(status, actions = {}) {
-    const EDAD_logo = require("../../assets/splash-icon.png");
+    const EDAD_logo = require("../../assets/Linus_torvalds.jpg");
     const MenuComponents = {
         naologado: {
             logoImg: EDAD_logo,
@@ -37,3 +37,7 @@ function GetMenuComponents(status, actions = {}) {
 }
 
 export default GetMenuComponents
+
+export function me() {
+    return (require("../../assets/Eita.png"));
+}
