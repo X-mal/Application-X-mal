@@ -82,12 +82,13 @@ app.use('/signup', signUpRouter);
 
 //Rotas Privadas
 /* Exemplo */
-app.use('/signin',authMiddleWare, signInRouter);
+/* app.use('/signin',authMiddleWare, signInRouter); */
+app.use('/signin', signInRouter);
 
 //Router arquivos
-app.use('/arquivo', arquivoRouter);
+app.use('/arquivo',authMiddleWare, arquivoRouter);
 //Router resposta 
-app.use('/resposta', respostaRouter);
+app.use('/resposta',authMiddleWare, respostaRouter);
 
 
 app.listen(PORT, () => {
