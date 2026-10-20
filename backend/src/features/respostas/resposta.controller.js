@@ -1,5 +1,5 @@
 // src/controllers/respostaController.js
-import { createRespostaService, getRespostaService } from "./resposta.service";
+import { createRespostaService, getRespostaService } from "./resposta.service.js";
 
 export async function create(req, res, next) {
   try {
