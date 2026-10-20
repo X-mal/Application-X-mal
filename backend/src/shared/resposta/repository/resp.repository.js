@@ -1,4 +1,4 @@
-import prisma from "../../../core/database/prisma.client.js"
+import prisma from "../../../core/database/prisma.cliente.js"
 
 async function respostaArchive(id){
     return prisma.resp.findFirst({
