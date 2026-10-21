@@ -4,7 +4,6 @@ import { generateToken } from "../../core/security/jwt.service.js";
 
 async function signIn(email, password) {
     const user = await findByEmail(email);
-    console.log("Dados usuario",user)
 
     if (!user) {
         const error = new Error("Email não esta associado a uma conta");
@@ -21,9 +20,8 @@ async function signIn(email, password) {
     const { pass: _, ...safeUser } = user;
 
     try {
-        console.log("Vai gerar token")
+
         const token = generateToken(user);
-        console.log("Token: ",token)
         return {
             token, user: safeUser
         }
