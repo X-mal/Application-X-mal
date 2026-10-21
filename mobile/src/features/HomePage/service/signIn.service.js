@@ -1,5 +1,5 @@
-async function SignIn() {
-    const resposta = await fetch("http://localhost:8081/signin", {
+async function SignIn({email, password}) {
+    const resposta = await fetch("https://application-x-mal.onrender.com/signin", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
