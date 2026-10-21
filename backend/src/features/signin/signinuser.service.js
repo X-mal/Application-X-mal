@@ -1,6 +1,6 @@
 import { findByEmail } from "../../shared/users/repository/user.repository.js"
 import { comparePassword } from "../../core/security/password.service.js";
-import { generateToken } from "../../core/database/prisma.cliente.js";
+import { generateToken } from "../../core/security/jwt.service.js";
 
 async function signIn(email, password) {
     const user = await findByEmail(email);
