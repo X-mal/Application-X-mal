@@ -21,6 +21,7 @@ async function signIn(email, password) {
     const { password: _, ...safeUser } = user;
 
     try {
+        console.log("Vai gerar token")
         const token = generateToken(user);
         console.log("Token: ",token)
         return {
