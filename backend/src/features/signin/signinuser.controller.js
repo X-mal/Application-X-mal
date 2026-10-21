@@ -18,7 +18,7 @@ async function signInController(req, res) {
         return res.status(201).json(token);
 
     } catch (issue) {
-        return res.status(404).json({ message: issue.message });
+        return res.status(302).json({ message: issue.message });
     }
 }
 
