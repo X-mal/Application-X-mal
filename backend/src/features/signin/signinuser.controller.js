@@ -1,25 +1,25 @@
-import { generateToken } from "../../core/security/jwt.service.js";
-import signIn from "./signinuser.service.js";
+import signIn from "./signin.service.js";
 
-async function signinController(req, res) {
-    const { email, password } = req.body;
-    if(!email || !password) {
-        const error = new Error("Email e senha são obrigatórios");
-        error.statusCode = 404;
-        return res.status(error.statusCode).json(error.message);
+
+async function signInController(req, res) {
+    const { email, password } = req.body
+    if (!email || !password) {
+        const error = new Error("email e senha são obrigatorios");
+        error.statusCode = 400;
+        return res.status(error.statusCode).json({ message: error.message });
     }
-    const { password: _, ...safeUser } = user;
-
     try {
-        const token =generateToken(user);
-        return {
-            token, user: safeUser
+        const token = await signIn(email, password);
+        if (!token) {
+            const error = new Error("Erro ao gerar token");
+            error.statusCode = 500;
+            throw error;
         }
+        return res.status(201).json(token);
+
     } catch (issue) {
-        const error = new Error("Erro Interno: " + issue.message);
-        error.statusCode = 500;
-        throw error;
+        return res.status(issue.statusCode).json({ message: issue.message });
     }
 }
 
-export default signinController ;
+export default signInController
