@@ -11,14 +11,14 @@ async function signIn(email, password) {
         error.statusCode = 404;
         throw error;
     }
-    const isPasswordCorrect = await comparePassword(password, user.password);
+    const isPasswordCorrect = await comparePassword(password, user.pass);
     if (!isPasswordCorrect) {
         const error = new Error("Senha incorreta");
         error.statusCode = 409;
         throw error;
     }
 
-    const { password: _, ...safeUser } = user;
+    const { pass: _, ...safeUser } = user;
 
     try {
         console.log("Vai gerar token")
