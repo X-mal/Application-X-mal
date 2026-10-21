@@ -1,4 +1,4 @@
-import { findByEmail } from "../../shared/users/repositories/user.repository.js"
+import { findByEmail } from "../../shared/users/repository/user.repository.js"
 import { comparePassword } from "../../core/security/password.service.js";
 import { generateToken } from "../../core/database/prisma.cliente.js";
 
