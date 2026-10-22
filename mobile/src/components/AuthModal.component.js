@@ -107,7 +107,7 @@ import {
     Platform,
 } from "react-native";
 
-function SignInModal({ visible, onClose, mode, onSubmit }) {
+function AuthModal({ visible, onClose, mode, onSubmit }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -131,24 +131,6 @@ function SignInModal({ visible, onClose, mode, onSubmit }) {
                                 {isSignIn ? "Fazer Login" : "Cadastrar"}
                             </Text>
 
-                            <TextInput
-                                placeholder="Email"
-                                value={email}
-                                onChangeText={setEmail}
-                                style={styles.input}
-                                placeholderTextColor="#7b7b7b"
-                                autoCapitalize="none"
-                                keyboardType="email-address"
-                            />
-
-                            <TextInput
-                                placeholder="Senha"
-                                value={password}
-                                onChangeText={setPassword}
-                                secureTextEntry
-                                style={styles.input}
-                                placeholderTextColor="#7b7b7b"
-                            />
 
                             <TouchableOpacity
                                 style={styles.button}
@@ -224,17 +206,6 @@ const styles = StyleSheet.create({
         marginBottom: 18,
         textAlign: "center",
     },
-    input: {
-        backgroundColor: "#c8cace",
-        borderWidth: 1,
-        borderColor: "#a1a1a1",
-        borderRadius: 12,
-        paddingHorizontal: 14,
-        paddingVertical: 12,
-        marginBottom: 12,
-        fontSize: 15,
-        color: "#000000",
-    },
     button: {
         backgroundColor: "#0cc737",
         borderRadius: 12,
@@ -262,4 +233,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default  SignInModal 
+export default  AuthModal

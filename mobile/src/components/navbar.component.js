@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import SignInModal from "./SignInModal.component";
+import AuthModal from "./AuthModal.component.js";
 import GetMenuComponents from "../data/MenuComponents.js";
 import useSignIn from "../features/HomePage/hook/useSignIn.js";
 
@@ -121,12 +121,28 @@ const styles = StyleSheet.create({
     function Navbar({ navigation }) {
     const menu = GetMenuComponents("naologado", {
         home: () => navigation.navigate("Home"),
-        signUp: () => navigation.navigate("SignUp"),
-        signIn: () => setModalSignInV(true),
+        /* signUp: () => navigation.navigate("SignUp"), */
+        signUp: () =>{
+            setModalMode("signup");
+            setModalAuthV(true);
+        },
+        signIn: () => {
+            setModalMode("signin");
+            setModalAuthV(true);
+        },
         profile: () => navigation.navigate("Profile"),
     });
-    const [signinmodalV, setModalSignInV] = useState(false);
+    const [signinmodalV, setModalAuthV] = useState(false);
+    const [modalmode, setModalMode] = useState("");
     const { handleSignIn, loading } = useSignIn();
+    const handleLogin = async (email, password) => {
+        try {
+            const result = await handleSignIn(email, password)
+            setModalAuthV(false)
+        } catch (issue) {
+            console.log("erro ao logar")
+        }
+    }
     return (
         <View style={styles.container}>
             <Image
@@ -153,12 +169,12 @@ const styles = StyleSheet.create({
                     </Pressable>
                 ))
             }
-            <SignInModal
+            <AuthModal
                 visible={signinmodalV}
-                onClose={() => setModalSignInV(false)}
-                mode="signin"
-                onSubmit={handleSignIn}>
-            </SignInModal>
+                onClose={() => setModalAuthV(false)}
+                mode="modalmode"
+                onSubmit={handleLogin}>
+            </AuthModal>
         </View >
     );
 }
