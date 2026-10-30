@@ -10,7 +10,14 @@ public class User {
         this.password = password;
     }
 
-    public User() {
+    public User(Object object) {
+        if(object instanceof User) {
+            this.user
+        }
+    }
+
+     public User() {
+        
     }
 
     public void SetUsername(String username) {
