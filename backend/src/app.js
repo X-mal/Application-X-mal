@@ -86,9 +86,9 @@ app.use('/signup', signUpRouter);
 app.use('/signin', signInRouter);
 
 //Router arquivos
-app.use('/arquivo',authMiddleWare, arquivoRouter);
+app.use('/arquivo', arquivoRouter);
 //Router resposta 
-app.use('/resposta',authMiddleWare, respostaRouter);
+app.use('/resposta',respostaRouter);
 
 
 app.listen(PORT, () => {

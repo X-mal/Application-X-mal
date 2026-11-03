@@ -1,10 +1,10 @@
 import React from "react";
-import { View } from "react-native";
 import { View, TextInput, StyleSheet } from "react-native";
 
 function SignInForm() {
     return(
         <View>
+
 <TextInput
             placeholder="Email"
             value={email}

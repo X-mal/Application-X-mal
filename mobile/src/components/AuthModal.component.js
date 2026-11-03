@@ -106,6 +106,9 @@ import {
     KeyboardAvoidingView,
     Platform,
 } from "react-native";
+import SignInForm from "./SignInForm.component.js";
+import SignUpForm from "./SignUpForm.component.js";
+import SignIn from "../features/HomePage/service/signIn.service";
 
 function AuthModal({ visible, onClose, mode, onSubmit }) {
     const [email, setEmail] = useState("");
@@ -130,7 +133,11 @@ function AuthModal({ visible, onClose, mode, onSubmit }) {
                             <Text style={styles.title}>
                                 {isSignIn ? "Fazer Login" : "Cadastrar"}
                             </Text>
-
+                            {isSignIn ?
+                            <SignInForm
+                            ></SignInForm>
+                            : <SignUpForm></SignUpForm>
+                            }
 
                             <TouchableOpacity
                                 style={styles.button}
