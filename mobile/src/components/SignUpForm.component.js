@@ -2,10 +2,21 @@ import React, { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 
 function SignUpForm() {
+    const [ra, setRa] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const [curso, setCurso] = useState('');
+    const [instituto, setInstituto] = useState('');
+    const [turno, setTurno] = useState('');
     return (
         <View>
+            <TextInput
+                placeholder="RA"
+                value={ra}
+                onChangeText={setRa}
+            > 
+            </TextInput>
             <TextInput
                 placeholder="Nome de usuario"
                 value={username}
@@ -16,7 +27,31 @@ function SignUpForm() {
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}>
-
+            </TextInput>
+            <TextInput
+                placeholder="Senha"
+                value={pass}
+                onChangeText={setPass}
+                secureTextEntry
+            >
+            </TextInput>
+            <TextInput
+                placeholder="Curso"
+                value={curso}
+                onChangeText={setCurso}
+            >
+            </TextInput>
+            <TextInput
+                placeholder="Instituto"
+                value={instituto}
+                onChangeText={setInstituto}
+            >
+            </TextInput>
+            <TextInput
+                placeholder="Turno"
+                value={turno}
+                onChangeText={setTurno}
+            >
             </TextInput>
         </View>
     );
@@ -29,7 +64,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     input:{
-        collor: 'fff',
+        collor: '#bec1c6',
          fontSize: 16
     },
     div:{

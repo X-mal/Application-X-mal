@@ -33,7 +33,7 @@ const style = StyleSheet.create({
         borderRadius: 10,
     },
     input:{
-        collor: 'fff',
+        collor: '#bec1c6',
          fontSize: 16
     },
     div:{
