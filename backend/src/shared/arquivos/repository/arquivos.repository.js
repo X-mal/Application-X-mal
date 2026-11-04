@@ -16,6 +16,7 @@ async function createArchive(data){
         select: {
             id: true,
             descricao: true,
+            link: true,
             estado: true,
             iduser: true,
             resposta: true
