@@ -31,16 +31,16 @@ function SignUpForm({ data, onChangeData }) {
                 value={data.curso}
                 onChangeText={(value) => onChangeData("curso", value)}>
             </TextInput>
-            <TextInput
-                placeholder="Instituto"
-                value={data.instituto}
-                onChangeText={(value) => onChangeData("instituto", value)}>
-            </TextInput>
-            <TextInput
-                placeholder="Turno"
-                value={data.turno}
-                onChangeText={(value) => onChangeData("turno", value)}>
-            </TextInput>
+                        <TextInput
+                            placeholder="Instituto"
+                            value={data.instituto}
+                            onChangeText={(value) => onChangeData("instituto", value)}>
+                        </TextInput>
+                        <TextInput
+                            placeholder="Turno"
+                            value={data.turno}
+                            onChangeText={(value) => onChangeData("turno", value)}>
+                        </TextInput>
             
         </View>
     );
