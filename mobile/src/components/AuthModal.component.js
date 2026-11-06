@@ -271,7 +271,11 @@ function AuthModal({ visible, onClose, mode, onSubmit }) {
     const [user, setUser] = useState({
         username: "",
         email: "",
-        password: ""
+        pass: "",
+        curso: "",
+        instituto: "",
+        turno: ""
+
     });
     const handleChangeData = (field, value) => {
         setUser((prev) => ({ ...prev, [field]: value }));
@@ -335,6 +339,17 @@ function AuthModal({ visible, onClose, mode, onSubmit }) {
 }
 
 const styles = StyleSheet.create({
+        input: {
+        backgroundColor: "#f3f4f6",
+        borderWidth: 1,
+        borderColor: "#6f7073",
+        borderRadius: 12,
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        marginBottom: 12,
+        fontSize: 15,
+        color: "#111827",
+    },
     overlay: {
         flex: 1,
         backgroundColor: "rgba(15, 23, 42, 0.55)",

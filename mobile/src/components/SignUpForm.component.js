@@ -1,6 +1,56 @@
 import React, { useState } from "react";
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, View } from "react-native";
 
+function SignUpForm({ data, onChangeData }) {
+    return (
+        <View>
+            <TextInput
+                placeholder="RA"
+                value={data.ra}
+                onChangeText={(value) => onChangeData("ra", value)}>
+            </TextInput>
+            <TextInput
+                placeholder="Nome de usuario"
+                value={data.username}
+                onChangeText={(value) => onChangeData("username", value)}
+            >
+            </TextInput>
+            <TextInput
+                placeholder="Email"
+                value={data.email}
+                onChangeText={(value) => onChangeData("email", value)}>
+
+            </TextInput>
+            <TextInput
+                placeholder="Senha"
+                value={data.pass}
+                onChangeText={(value) => onChangeData("pass", value)}>
+            </TextInput>
+            <TextInput
+                placeholder="Curso"
+                value={data.curso}
+                onChangeText={(value) => onChangeData("curso", value)}>
+            </TextInput>
+            <TextInput
+                placeholder="Instituto"
+                value={data.instituto}
+                onChangeText={(value) => onChangeData("instituto", value)}>
+            </TextInput>
+            <TextInput
+                placeholder="Turno"
+                value={data.turno}
+                onChangeText={(value) => onChangeData("turno", value)}>
+            </TextInput>
+            
+        </View>
+    );
+}
+
+export default SignUpForm
+
+/* Codigo antigo do SignUpForm.component.js
+import React, { useState } from "react";
+import { TextInput, View, StyleSheet } from "react-native";
 function SignUpForm() {
     const [ra, setRa] = useState('');
     const [username, setUsername] = useState('');
@@ -71,9 +121,8 @@ const styles = StyleSheet.create({
         margin: 10
     }
 })
-
 export default SignUpForm
-
+ */
 /* Adson Code
 import React from "react";
 import { Text, StyleSheet, View, Pressable, TextInput } from "react-native"
@@ -111,3 +160,33 @@ const styles = StyleSheet.create({
         margin: 10
     }
 }) */
+
+/* Codigo do professor
+    import React, { useState } from "react";
+import { TextInput, View } from "react-native";
+
+function SignUpForm({ data, onChangeData }) {
+    return (
+        <View>
+            <TextInput
+                placeholder="Nome de usuario"
+                value={data.username}
+                onChangeText={(value) => onChangeData("username", value)}
+            >
+            </TextInput>
+            <TextInput
+                placeholder="Email"
+                value={data.email}
+                onChangeText={(value) => onChangeData("email", value)}>
+
+            </TextInput>
+            <TextInput
+                placeholder="Senha"
+                value={data.password}
+                onChangeText={(value) => onChangeData("password", value)}>
+            </TextInput>
+        </View>
+    );
+}
+
+export default SignUpForm */

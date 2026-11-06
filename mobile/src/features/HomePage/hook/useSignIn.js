@@ -1,4 +1,4 @@
-import SignIn from "../service/signIn.service.js";
+/* import SignIn from "../service/signIn.service.js";
 
 function useSignIn() {
     const handleSignIn = async({email, password}) => {
@@ -11,4 +11,22 @@ function useSignIn() {
         }
         return{ handleSignIn }
     };
-    export default useSignIn
+    export default useSignIn */
+
+import { useState } from "react";
+import SignIn from "../service/signIn.service";
+
+function useSignIn(loading) {
+    const handleSignIn = async (user) => {
+        loading(true)
+        try {
+            const result = await SignIn(user)
+            return result
+        } finally {
+            loading(false)
+        }
+    }
+    return handleSignIn
+}
+
+export default useSignIn
