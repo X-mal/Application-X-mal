@@ -1,4 +1,4 @@
-function GetMenuComponents(status, actions = {}) {
+ function GetMenuComponents(status, actions = {}) {
     const EDAD_logo = require("../../assets/Linus_torvalds.jpg");
     const MenuComponents = {
         naologado: {

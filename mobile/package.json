@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@react-native-picker/picker": "2.11.4",
     "@react-navigation/native": "^7.5.1",
     "@react-navigation/stack": "^7.12.1",
     "expo": "~58.0.23",
